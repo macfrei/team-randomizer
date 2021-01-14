@@ -10,5 +10,6 @@ body {
     grid-template-rows: auto auto 1fr auto;
     height: 100vh;
     padding: 24px;
+    color: #193251;
 }
 `

@@ -13,13 +13,12 @@ export default function Teams({ data }) {
               {data.prefix}
               {index + 1}:{' '}
             </span>
-            {group.map((student, index) => (
+            {group.sort().map((student, index) => (
               <>
                 <Name key={index}>{student}</Name>
                 {index < group.length - 1 && <And>&</And>}
               </>
             ))}
-            {/* <span>{group.sort().join('&')}</span> */}
           </li>
         )
       })}
