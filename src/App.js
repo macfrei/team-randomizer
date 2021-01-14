@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import Form from './Form'
+import styled from 'styled-components/macro'
+import AppForm from './AppForm'
 import saveToLocal from './services/saveToLocal'
 import loadFromLocal from './services/loadFromLocal'
 import Teams from './Teams'
@@ -9,9 +10,11 @@ function App() {
 
   return (
     <>
-      <h1>Team {data.seed}</h1>
+      <Headline>
+        Team <span>{data.seed}</span>
+      </Headline>
       <Teams data={data} />
-      <Form onSubmit={submitForm} />
+      <AppForm onSubmit={submitForm} />
     </>
   )
 
@@ -20,5 +23,13 @@ function App() {
     setData(formData)
   }
 }
+
+const Headline = styled.h1`
+  font-weight: normal;
+
+  span {
+    color: #ff5a36;
+  }
+`
 
 export default App
