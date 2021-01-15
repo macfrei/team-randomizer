@@ -1,6 +1,6 @@
 export default function shuffle(list, randomizer, seed) {
   seed = seed + new Date().toDateString()
-  for (let i = list.length - 1; i > 0; i--) {
+  for (let i = list?.length - 1; i > 0; i--) {
     randomizer.seed(seed + i)
     const j = Math.floor(randomizer.random() * (i + 1))
     ;[list[i], list[j]] = [list[j], list[i]]

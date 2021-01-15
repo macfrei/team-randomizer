@@ -4,10 +4,10 @@ import saveToLocal from './services/saveToLocal'
 
 export default function AppForm({ setData, data }) {
   const [formData, setFormData] = useState({
-    size: '' || 4,
-    seed: '' || 'Web Development',
-    names: '' || '',
-    prefix: '' || 'HH-WEB-21-1-BR-',
+    size: 4,
+    seed: 'Web Development',
+    names: '',
+    prefix: 'HH-WEB-21-1-BR-',
   })
 
   return (

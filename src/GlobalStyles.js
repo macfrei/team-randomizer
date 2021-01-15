@@ -7,10 +7,13 @@ export default createGlobalStyle`
 
 #root {
     display: grid;
+    grid-template-columns: 1fr min(65ch, 100%) 1fr;
     font-family: sans-serif;
-    grid-template-rows: auto auto 1fr auto;
-    height: 100vh;
     padding: 24px;
     color: #193251;
+
+    & > * {
+        grid-column: 2;
+    }
 }
 `
