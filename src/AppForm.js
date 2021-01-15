@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import styled from 'styled-components/macro'
+import saveToLocal from './services/saveToLocal'
 
-export default function AppForm({ onSubmit }) {
+export default function AppForm({ setData, data }) {
   const [formData, setFormData] = useState({
     size: '' || 4,
     seed: '' || 'Web Development',
@@ -10,7 +11,7 @@ export default function AppForm({ onSubmit }) {
   })
 
   return (
-    <details>
+    <details open={!data.names}>
       <Summary>Settings</Summary>
       <Form onSubmit={handleSubmit}>
         <label>
@@ -56,7 +57,8 @@ export default function AppForm({ onSubmit }) {
 
   function handleSubmit(event) {
     event.preventDefault()
-    onSubmit(formData)
+    saveToLocal('groups', formData)
+    setData(formData)
   }
 
   function handleChange(event) {

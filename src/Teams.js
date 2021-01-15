@@ -1,3 +1,4 @@
+import React from 'react'
 import styled from 'styled-components/macro'
 import createGroup from './services/createGroups'
 
@@ -14,10 +15,10 @@ export default function Teams({ data }) {
               {index + 1}:{' '}
             </span>
             {group.sort().map((student, index) => (
-              <>
-                <Name key={index}>{student}</Name>
+              <React.Fragment key={index}>
+                <Name>{student}</Name>
                 {index < group.length - 1 && <And>&</And>}
-              </>
+              </React.Fragment>
             ))}
           </li>
         )

@@ -1,12 +1,11 @@
 import { useState } from 'react'
 import styled from 'styled-components/macro'
 import AppForm from './AppForm'
-import saveToLocal from './services/saveToLocal'
 import loadFromLocal from './services/loadFromLocal'
 import Teams from './Teams'
 
 function App() {
-  const [data, setData] = useState(loadFromLocal('groups') || '')
+  const [data, setData] = useState(loadFromLocal('groups') || {})
 
   return (
     <>
@@ -14,14 +13,9 @@ function App() {
         Team <span>{data.seed}</span>
       </Headline>
       <Teams data={data} />
-      <AppForm onSubmit={submitForm} />
+      <AppForm setData={setData} data={data} />
     </>
   )
-
-  function submitForm(formData) {
-    saveToLocal('groups', formData)
-    setData(formData)
-  }
 }
 
 const Headline = styled.h1`

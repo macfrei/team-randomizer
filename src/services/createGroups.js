@@ -19,6 +19,12 @@ export default function createGroup(data) {
       ...groups.slice(0, groups.length - 2),
       groups[groups.length - 2].slice().concat(lastGroup),
     ]
+  } else if (lastGroup.length === 2 && size === 4) {
+    groups = [
+      ...groups.slice(0, groups.length - 2),
+      groups[groups.length - 2].slice().concat(lastGroup[0]),
+      groups[groups.length - 3].slice().concat(lastGroup[1]),
+    ]
   }
 
   return groups
