@@ -5,7 +5,14 @@ import loadFromLocal from './services/loadFromLocal'
 import Teams from './Teams'
 
 function App() {
-  const [data, setData] = useState(loadFromLocal('groups') || {})
+  const [data, setData] = useState(
+    loadFromLocal('groups') || {
+      size: 4,
+      seed: 'Web Development',
+      names: '',
+      prefix: 'HH-WEB-21-1-BR-',
+    }
+  )
 
   return (
     <>
