@@ -5,12 +5,12 @@ import _ from 'lodash'
 const rand = randomSeed.create()
 
 export default function createGroup(data) {
-  let { names, size = 4, seed = 'Web Development' } = data
+  let { names, size = 4, project } = data
 
   if (names === '') return // early out
 
   names = names?.split(',').map((item) => item.trim())
-  shuffle(names, rand, seed)
+  shuffle(names, rand, project)
   let groups = _.chunk(names, Number(size))
   const lastGroup = groups[groups.length - 1]
 
