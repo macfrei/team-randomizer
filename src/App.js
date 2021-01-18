@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import styled from 'styled-components/macro'
 import AppForm from './components/AppForm'
 import loadFromLocal from './services/loadFromLocal'
 import Teams from './components/Teams'
+import AppHeader from './components/AppHeader'
 
 function App() {
   const [data, setData] = useState(
@@ -14,25 +14,13 @@ function App() {
     }
   )
 
-  const date = new Date().toDateString()
-
   return (
     <>
-      <Headline>
-        Teams <span>{data.project === '' ? date : data.project}</span>
-      </Headline>
+      <AppHeader data={data} />
       <Teams data={data} />
       <AppForm setData={setData} data={data} />
     </>
   )
 }
-
-const Headline = styled.h1`
-  font-weight: normal;
-
-  span {
-    color: #ff5a36;
-  }
-`
 
 export default App
