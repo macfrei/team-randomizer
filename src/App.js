@@ -1,23 +1,25 @@
 import { useState } from 'react'
 import styled from 'styled-components/macro'
-import AppForm from './AppForm'
+import AppForm from './components/AppForm'
 import loadFromLocal from './services/loadFromLocal'
-import Teams from './Teams'
+import Teams from './components/Teams'
 
 function App() {
   const [data, setData] = useState(
     loadFromLocal('groups') || {
       size: 4,
-      seed: 'Web Development',
+      project: '',
       names: '',
       prefix: 'HH-WEB-21-1-BR-',
     }
   )
 
+  const date = new Date().toDateString()
+
   return (
     <>
       <Headline>
-        Team <span>{data.seed}</span>
+        Teams <span>{data.project === '' ? date : data.project}</span>
       </Headline>
       <Teams data={data} />
       <AppForm setData={setData} data={data} />
