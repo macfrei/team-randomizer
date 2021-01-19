@@ -104,12 +104,13 @@ const Form = styled.form`
     font-style: italic;
   }
 `
+
 const Summary = styled.summary`
   cursor: default;
-  display: inline-block;
-  border: 1px solid #aaa5;
+  border: 1px solid var(--blue-50);
   background: #eee;
   padding: 2px 6px;
   border-radius: 4px;
   margin-bottom: 12px;
+  width: 100px;
 `
