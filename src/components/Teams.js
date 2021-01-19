@@ -38,14 +38,27 @@ const TeamHeadline = styled.h2`
 
 const List = styled.ul`
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  flex-direction: column;
   list-style: none;
   padding: 0;
   border: 1px solid var(--blue-50);
   border-radius: 6px;
   width: 100%;
   font-size: 1em;
+
+  > * + * {
+    border-top: var(--border-blue);
+  }
+
+  @media (min-width: 500px) {
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+
+    > * + * {
+      border-top: none;
+    }
+  }
 `
 
 const ListItem = styled.li`
