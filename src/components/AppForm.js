@@ -32,6 +32,10 @@ export default function AppForm({ setData, data }) {
             onChange={handleChange}
           />
         </label>
+        <small>
+          If you don't set a project name, the randomized teams will be linked
+          to the date.
+        </small>
         <label>
           All names:
           <input
@@ -93,6 +97,11 @@ const Form = styled.form`
   input {
     display: block;
     width: 100%;
+  }
+
+  small {
+    color: var(--orange-main);
+    font-style: italic;
   }
 `
 const Summary = styled.summary`
