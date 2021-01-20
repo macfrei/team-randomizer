@@ -34,11 +34,11 @@ export default function AppForm({ setData, data }) {
             value={formData.project}
             onChange={handleChange}
           />
+          <small>
+            If you don't set a project name, the randomized teams will be linked
+            to the date.
+          </small>
         </label>
-        <small>
-          If you don't set a project name, the randomized teams will be linked
-          to the date.
-        </small>
         <label>
           All names:
           <input
@@ -66,7 +66,7 @@ export default function AppForm({ setData, data }) {
     event.preventDefault()
     saveToLocal('groups', formData)
     setData(formData)
-    event.target.reset()
+    setToggle(false)
   }
 
   function handleChange(event) {
@@ -100,6 +100,12 @@ const Form = styled.form`
   input {
     display: block;
     width: 100%;
+    padding: 2px 6px;
+    line-height: 1.5;
+    border-radius: 5px;
+    border: 1px solid var(--blue-50);
+    font-size: 100%;
+    color: var(--blue-main);
   }
 
   small {
@@ -116,7 +122,7 @@ const Summary = styled.h2`
   border: 1px solid var(--blue-50);
   background: ${(props) => (props.toggle ? 'white' : '#eee')};
   padding: 2px 6px;
-  border-radius: 4px;
+  border-radius: 5px;
   margin: 0 0 12px 0;
   font-weight: normal;
   font-size: 100%;
