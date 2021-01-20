@@ -3,6 +3,7 @@ import styled from 'styled-components/macro'
 import saveToLocal from '../services/saveToLocal'
 
 export default function AppForm({ setData, data }) {
+  const [toggle, setToggle] = useState(!data.names)
   const [formData, setFormData] = useState({
     size: 4,
     project: '',
@@ -11,9 +12,11 @@ export default function AppForm({ setData, data }) {
   })
 
   return (
-    <details open={!data.names}>
-      <Summary>Settings</Summary>
-      <Form onSubmit={handleSubmit}>
+    <section>
+      <Summary onClick={() => setToggle(!toggle)} toggle={toggle}>
+        Settings
+      </Summary>
+      <Form toggle={toggle} onSubmit={handleSubmit}>
         <label>
           Team size:
           <input
@@ -56,7 +59,7 @@ export default function AppForm({ setData, data }) {
         </label>
         <button>save</button>
       </Form>
-    </details>
+    </section>
   )
 
   function handleSubmit(event) {
@@ -75,7 +78,7 @@ export default function AppForm({ setData, data }) {
 }
 
 const Form = styled.form`
-  display: grid;
+  display: ${(props) => (props.toggle ? 'grid' : 'none')};
   grid-gap: 12px;
   margin-top: 5px;
 
@@ -105,12 +108,21 @@ const Form = styled.form`
   }
 `
 
-const Summary = styled.summary`
+const Summary = styled.h2`
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
   cursor: default;
   border: 1px solid var(--blue-50);
-  background: #eee;
+  background: ${(props) => (props.toggle ? 'white' : '#eee')};
   padding: 2px 6px;
   border-radius: 4px;
-  margin-bottom: 12px;
-  width: 100px;
+  margin: 0 0 12px 0;
+  font-weight: normal;
+  font-size: 100%;
+  width: 90px;
+
+  &::before {
+    content: '${(props) => (props.toggle ? '▿ ' : '▹ ')}';
+  }
 `
