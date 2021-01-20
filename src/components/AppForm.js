@@ -6,8 +6,8 @@ export default function AppForm({ setData, data }) {
   const [toggle, setToggle] = useState(!data.names)
   const [formData, setFormData] = useState({
     size: 4,
-    project: '',
-    names: '',
+    project: data.project || '',
+    names: data.names || '',
     prefix: 'HH-WEB-21-1-BR-',
   })
 
