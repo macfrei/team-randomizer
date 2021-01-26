@@ -1,22 +1,26 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components/macro'
 import saveToLocal from '../services/saveToLocal'
 
 export default function AppForm({ setData, data }) {
-  const [toggle, setToggle] = useState(!data.names)
+  const [isOpen, setIsOpen] = useState(!data.names)
   const [formData, setFormData] = useState({
     size: 4,
-    project: data.project || '',
-    names: data.names || '',
+    project: data.project ?? '',
+    names: data.names ?? '',
     prefix: 'HH-WEB-21-1-BR-',
   })
 
+  useEffect(() => {
+    saveToLocal('groups', formData)
+  }, [formData])
+
   return (
     <section>
-      <Summary onClick={() => setToggle(!toggle)} toggle={toggle}>
+      <Summary onClick={() => setIsOpen(!isOpen)} isOpen={isOpen}>
         Settings
       </Summary>
-      <Form toggle={toggle} onSubmit={handleSubmit}>
+      <Form isOpen={isOpen} onSubmit={handleSubmit}>
         <label>
           Team size:
           <input
@@ -64,9 +68,8 @@ export default function AppForm({ setData, data }) {
 
   function handleSubmit(event) {
     event.preventDefault()
-    saveToLocal('groups', formData)
     setData(formData)
-    setToggle(false)
+    setIsOpen(false)
   }
 
   function handleChange(event) {
@@ -78,19 +81,19 @@ export default function AppForm({ setData, data }) {
 }
 
 const Form = styled.form`
-  display: ${(props) => (props.toggle ? 'grid' : 'none')};
+  display: ${(props) => (props.isOpen ? 'grid' : 'none')};
   grid-gap: 12px;
   margin-top: 5px;
 
   button {
-    justify-self: start;
     background-color: #ff5a36;
+    border-radius: 5px;
     border: 1px solid #ffded7;
     color: white;
-    border-radius: 5px;
     font-size: 100%;
-    padding: 2px 6px;
+    justify-self: start;
     line-height: 1.5;
+    padding: 2px 6px;
   }
 
   label {
@@ -98,14 +101,14 @@ const Form = styled.form`
   }
 
   input {
-    display: block;
-    width: 100%;
-    padding: 2px 6px;
-    line-height: 1.5;
     border-radius: 5px;
     border: 1px solid var(--blue-50);
-    font-size: 100%;
     color: var(--blue-main);
+    display: block;
+    font-size: 100%;
+    line-height: 1.5;
+    padding: 2px 6px;
+    width: 100%;
   }
 
   small {
@@ -114,21 +117,21 @@ const Form = styled.form`
   }
 `
 
-const Summary = styled.h2`
-  display: flex;
-  justify-content: space-between;
+const Summary = styled.button`
   align-items: baseline;
-  cursor: default;
-  border: 1px solid var(--blue-50);
-  background: ${(props) => (props.toggle ? 'white' : '#eee')};
-  padding: 2px 6px;
+  background: ${(props) => (props.isOpen ? 'white' : '#eee')};
   border-radius: 5px;
-  margin: 0 0 12px 0;
-  font-weight: normal;
+  border: 1px solid var(--blue-50);
+  color: inherit;
+  cursor: default;
+  display: flex;
   font-size: 100%;
-  width: 90px;
+  font-weight: normal;
+  margin: 0 0 12px 0;
+  padding: 2px 6px;
 
   &::before {
-    content: '${(props) => (props.toggle ? '▿ ' : '▹ ')}';
+    content: '${(props) => (props.isOpen ? '▿' : '▹')}';
+    width: 20px;
   }
 `
