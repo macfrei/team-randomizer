@@ -1,14 +1,14 @@
 import { useState } from 'react'
-import styled from 'styled-components/macro'
-import AppForm from './AppForm'
+import AppForm from './components/AppForm'
 import loadFromLocal from './services/loadFromLocal'
-import Teams from './Teams'
+import Teams from './components/Teams'
+import AppHeader from './components/AppHeader'
 
 function App() {
   const [data, setData] = useState(
     loadFromLocal('groups') || {
       size: 4,
-      seed: 'Web Development',
+      project: '',
       names: '',
       prefix: 'HH-WEB-21-1-BR-',
     }
@@ -16,21 +16,11 @@ function App() {
 
   return (
     <>
-      <Headline>
-        Team <span>{data.seed}</span>
-      </Headline>
+      <AppHeader data={data} />
       <Teams data={data} />
       <AppForm setData={setData} data={data} />
     </>
   )
 }
-
-const Headline = styled.h1`
-  font-weight: normal;
-
-  span {
-    color: #ff5a36;
-  }
-`
 
 export default App
