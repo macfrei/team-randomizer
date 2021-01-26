@@ -1,4 +1,4 @@
-export default function shuffle(list, randomizer, project) {
+export default function shuffleNames(list, randomizer, project) {
   let seed = project
   if (project === '') {
     seed = new Date().toDateString()

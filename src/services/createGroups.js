@@ -1,4 +1,4 @@
-import shuffle from './shuffel'
+import shuffleNames from './shuffleNames'
 import randomSeed from 'random-seed'
 import _ from 'lodash'
 
@@ -10,7 +10,7 @@ export default function createGroup(data) {
   if (names === '') return // early out
 
   names = names?.split(',').map((item) => item.trim())
-  shuffle(names, rand, project)
+  shuffleNames(names, rand, project)
   let groups = _.chunk(names, Number(size))
   const lastGroup = groups[groups.length - 1]
 
