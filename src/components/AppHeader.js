@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 
 export default function AppHeader({ data }) {
   const date = new Date().toDateString()
