@@ -8,7 +8,7 @@ export default function AppForm({ setData, data }) {
     size: 4,
     project: data.project ?? '',
     names: data.names ?? '',
-    prefix: 'HH-WEB-21-1-BR-',
+    prefix: data.prefix ?? '',
   })
 
   useEffect(() => {
@@ -81,7 +81,7 @@ export default function AppForm({ setData, data }) {
 }
 
 const Form = styled.form`
-  display: ${(props) => (props.isOpen ? 'grid' : 'none')};
+  display: ${props => (props.isOpen ? 'grid' : 'none')};
   grid-gap: 12px;
   margin-top: 5px;
 
@@ -119,7 +119,7 @@ const Form = styled.form`
 
 const Summary = styled.button`
   align-items: baseline;
-  background: ${(props) => (props.isOpen ? 'white' : '#eee')};
+  background: ${props => (props.isOpen ? 'white' : '#eee')};
   border-radius: 5px;
   border: 1px solid var(--blue-50);
   color: inherit;
@@ -131,7 +131,7 @@ const Summary = styled.button`
   padding: 2px 6px;
 
   &::before {
-    content: '${(props) => (props.isOpen ? '▿' : '▹')}';
+    content: '${props => (props.isOpen ? '▿' : '▹')}';
     width: 20px;
   }
 `

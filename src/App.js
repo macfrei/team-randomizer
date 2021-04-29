@@ -10,7 +10,7 @@ function App() {
       size: 4,
       project: '',
       names: '',
-      prefix: 'HH-WEB-21-1-BR-',
+      prefix: '',
     }
   )
 
